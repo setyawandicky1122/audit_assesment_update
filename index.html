@@ -747,7 +747,7 @@ function renderAdminUsers(){
       <td><code style="font-size:12px">${u.username}</code></td>
       <td><span class="badge ${u.role==='admin'?'badge-admin':'badge-user'}">${u.role==='admin'?'Admin':'User'}</span></td>
       <td><span class="badge ${u.jabatan==='ketua'?'badge-ketua':u.jabatan==='anggota'?'badge-anggota':'badge-admin'}">${u.jabatan}</span></td>
-      <td><span style="color:${u.active?'var(--green)':'var(--red)';}">${u.active?'Aktif':'Nonaktif'}</span></td>
+      <td><span style="color:${u.active ? 'var(--green)' : 'var(--red)'}">${u.active ? 'Aktif' : 'Nonaktif'}</span></td>
       <td>
         <button class="btn btn-sm" onclick="editUser('${u.id}')">Edit</button>
         <button class="btn btn-sm btn-danger" onclick="toggleUser('${u.id}')">${u.active?'Nonaktifkan':'Aktifkan'}</button>
