@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Audit Competency Strategy Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:#F2F1ED;--surface:#FFF;--surface2:#ECEAE3;--border:#DEDAD0;--border2:#C4C0B2;
+  --navy:#1B3A6B;--navyl:#EAF0FA;--gold:#B8860B;--goldl:#FBF3DC;
+  --teal:#0D6B5E;--teall:#E0F5F2;--slate:#4A5568;--red:#8B2020;--redl:#FAE8E8;
+  --amber:#7A4F0D;--amberl:#FDF0DB;--green:#2D6A2D;--greenl:#E6F2E6;
+  --purple:#4A3B9C;--purpll:#EEEBFB;
+  --text:#1A202C;--text2:#4A5568;--text3:#9AA0AC;
+  --r:12px;--rsm:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.page{max-width:760px;margin:0 auto;padding:2rem 1rem 5rem;}
+h1{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;color:var(--navy);}
+h2{font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;color:var(--navy);margin-bottom:1rem;}
+h3{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:.75rem;}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;}
+.card+.card{margin-top:1rem;}
+
+/* INPUTS */
+input,select,textarea{width:100%;padding:.65rem 1rem;font-size:13px;font-family:'DM Sans',sans-serif;border:1px solid var(--border2);border-radius:var(--rsm);background:var(--surface);color:var(--text);outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--navy);}
+textarea{resize:vertical;min-height:80px;line-height:1.6;}
+label{display:block;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:5px;}
+.form-row{margin-bottom:1rem;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+/* BUTTONS */
+.btn{padding:.6rem 1.25rem;border-radius:var(--rsm);font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;border:1px solid var(--border2);background:var(--surface);color:var(--text);transition:background .15s,opacity .15s;}
+.btn:hover{background:var(--surface2);}
+.btn:active{transform:scale(.98);}
+.btn-primary{background:var(--navy);color:#fff;border-color:var(--navy);}
+.btn-primary:hover{opacity:.88;background:var(--navy);}
+.btn-danger{background:var(--redl);color:var(--red);border-color:var(--red);}
+.btn-danger:hover{opacity:.85;background:var(--redl);}
+.btn-sm{padding:.4rem .85rem;font-size:12px;}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem;}
+
+/* BADGE */
+.badge{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500;}
+.badge-admin{background:#EEEBFB;color:#4A3B9C;}
+.badge-user{background:#E0F5F2;color:#0D6B5E;}
+.badge-ketua{background:#EAF0FA;color:#1B3A6B;}
+.badge-anggota{background:#FBF3DC;color:#7A4F0D;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th{text-align:left;padding:.6rem .9rem;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border);}
+.tbl td{padding:.7rem .9rem;border-bottom:.5px solid var(--border);color:var(--text2);vertical-align:middle;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:var(--surface2);}
+
+/* NAV */
+.topbar{background:var(--navy);padding:.75rem 1.5rem;display:flex;justify-content:space-between;align-items:center;}
+.topbar-brand{color:#fff;font-size:14px;font-weight:600;letter-spacing:.02em;}
+.topbar-brand span{opacity:.6;font-weight:400;margin-left:8px;font-size:12px;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.topbar-user{color:#fff;font-size:12px;opacity:.8;}
+.topbar-btn{color:#fff;font-size:12px;opacity:.7;cursor:pointer;padding:.3rem .75rem;border:1px solid rgba(255,255,255,.3);border-radius:var(--rsm);background:transparent;font-family:'DM Sans',sans-serif;}
+.topbar-btn:hover{opacity:1;}
+
+/* TABS */
+.tabs{display:flex;gap:4px;margin-bottom:1.5rem;border-bottom:1px solid var(--border);padding-bottom:0;}
+.tab{padding:.6rem 1rem;font-size:13px;font-weight:500;cursor:pointer;color:var(--text3);border-bottom:2px solid transparent;margin-bottom:-1px;}
+.tab.active{color:var(--navy);border-bottom-color:var(--navy);}
+.tab:hover{color:var(--text2);}
+
+/* SECTION */
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.eyebrow{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);}
+
+/* ALERT */
+.alert{padding:.75rem 1rem;border-radius:var(--rsm);font-size:13px;margin-bottom:1rem;}
+.alert-danger{background:var(--redl);color:var(--red);border:1px solid #f0b5b5;}
+.alert-success{background:var(--greenl);color:var(--green);border:1px solid #b0d9b0;}
+.alert-info{background:var(--navyl);color:var(--navy);border:1px solid #bad1ee;}
+
+/* LOGIN */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;}
+.login-card{width:100%;max-width:400px;}
+.login-header{text-align:center;margin-bottom:2rem;}
+.login-header h1{margin-bottom:6px;}
+.login-header p{font-size:13px;color:var(--text2);}
+
+/* GAME ELEMENTS (reused from assessment) */
+.hud-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.25rem;margin-bottom:1rem;}
+.hud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.hud-stat{text-align:center;}
+.hud-lbl{font-size:10px;color:var(--text3);margin-bottom:3px;}
+.hud-val{font-size:17px;font-weight:700;}
+.bar-w{height:4px;background:var(--border);border-radius:2px;margin-top:4px;}
+.bar-f{height:100%;border-radius:2px;transition:width .5s;}
+.sc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;margin-bottom:1rem;}
+.sc-title-text{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);}
+.sc-dilema{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:10px;}
+.sc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.sc-tag{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--surface2);color:var(--text3);}
+.sc-iia{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--navyl);color:var(--navy);font-weight:500;}
+.comp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;}
+.comp-tag{font-size:11px;padding:3px 9px;border-radius:20px;font-weight:500;}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.25rem;}
+.cbtn{background:var(--surface);border:1px solid var(--border2);border-radius:var(--rsm);padding:.75rem 1rem;cursor:pointer;text-align:left;font-size:13px;color:var(--text);line-height:1.55;font-family:'DM Sans',sans-serif;transition:background .15s;}
+.cbtn:hover{background:var(--surface2);}
+.cbtn.picked{background:var(--navyl);border:1.5px solid var(--navy);}
+.cbtn.faded{opacity:.35;pointer-events:none;}
+.opt-label{display:block;font-size:10px;font-weight:600;color:var(--text3);margin-bottom:4px;letter-spacing:.05em;}
+.outcome-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.25rem;margin-bottom:1rem;}
+.outcome-box.active{border-color:var(--navy);}
+.ob-lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;}
+.ob-lbl.active{color:var(--navy);}
+.ob-txt{font-size:13px;color:var(--text);line-height:1.65;}
+.eff-pills{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.epill{font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500;}
+.ob-level{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;}
+.game-footer{display:flex;justify-content:space-between;align-items:center;}
+.round-lbl{font-size:13px;color:var(--text3);}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem;}
+.role-card{border:1.5px solid var(--border);border-radius:var(--r);padding:1rem 1.25rem;cursor:pointer;transition:border-color .2s,background .2s;background:var(--surface);}
+.role-card:hover{border-color:var(--border2);background:var(--surface2);}
+.role-card.selected{border-color:var(--navy);background:var(--navyl);}
+.role-name{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.role-desc{font-size:12px;color:var(--text2);line-height:1.5;}
+.meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
+.meta-item{background:var(--surface2);border-radius:var(--rsm);padding:.75rem;text-align:center;}
+.meta-num{font-size:22px;font-weight:600;color:var(--navy);}
+.meta-lbl{font-size:11px;color:var(--text3);margin-top:2px;}
+.result-hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:2rem;text-align:center;margin-bottom:1rem;}
+.score-ring{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:110px;height:110px;border-radius:50%;border:3px solid var(--border);margin-bottom:1rem;}
+.score-big{font-size:38px;font-weight:700;line-height:1;}
+.score-denom{font-size:12px;color:var(--text3);}
+.r-grade{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:.5rem;}
+.r-note{font-size:13px;color:var(--text2);line-height:1.7;max-width:480px;margin:0 auto 1.25rem;}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.25rem;}
+.metric-item{background:var(--surface2);border-radius:var(--rsm);padding:.65rem .9rem;}
+.metric-lbl{font-size:10px;color:var(--text3);margin-bottom:4px;}
+.metric-val{font-size:16px;font-weight:700;}
+.cp-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.cp-name{font-size:12px;color:var(--text2);min-width:150px;}
+.cp-bar-w{flex:1;height:5px;background:var(--border);border-radius:3px;}
+.cp-bar-f{height:100%;border-radius:3px;}
+.cp-score{font-size:12px;font-weight:600;min-width:28px;text-align:right;}
+.section-sep{display:flex;align-items:center;gap:12px;margin:1.5rem 0 1rem;}
+.section-sep span{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);white-space:nowrap;}
+.section-sep hr{flex:1;border:none;border-top:1px solid var(--border);}
+.timestamp{font-size:11px;color:var(--text3);margin-top:.75rem;}
+
+/* QUESTION EDITOR */
+.choice-editor{background:var(--surface2);border:1px solid var(--border);border-radius:var(--rsm);padding:1rem;margin-bottom:.75rem;}
+.choice-editor label{color:var(--text3);}
+.choice-level{display:flex;align-items:center;gap:8px;margin-top:.5rem;}
+.choice-level label{margin:0;white-space:nowrap;}
+.choice-level input[type=number]{width:70px;}
+
+/* MODAL OVERLAY (in-flow) */
+.modal-overlay{background:rgba(0,0,0,.45);border-radius:var(--r);padding:2rem;display:flex;align-items:flex-start;justify-content:center;min-height:300px;}
+.modal-box{background:var(--surface);border-radius:var(--r);padding:1.5rem;width:100%;max-width:560px;}
+.modal-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:1rem;}
+
+/* RESPONSIVE */
+@media(max-width:540px){
+  .form-grid{grid-template-columns:1fr;}
+  .choices{grid-template-columns:1fr;}
+  .hud-grid{grid-template-columns:repeat(2,1fr);}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .role-grid{grid-template-columns:1fr;}
+}
+@media print{
+  .topbar,.tabs,.btn-row,.no-print{display:none!important;}
+  body{background:#fff;}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+// STORAGE HELPERS
+// ═══════════════════════════════════════════════════════════════════════
+const DB = {
+  get: k => { try { return JSON.parse(localStorage.getItem('acsa_'+k)); } catch(e) { return null; } },
+  set: (k,v) => localStorage.setItem('acsa_'+k, JSON.stringify(v)),
+  del: k => localStorage.removeItem('acsa_'+k),
+};
+
+function hashPass(p){ let h=0; for(let i=0;i<p.length;i++){h=((h<<5)-h)+p.charCodeAt(i);h|=0;} return h.toString(36); }
+
+// ═══════════════════════════════════════════════════════════════════════
+// SEED DEFAULT DATA
+// ═══════════════════════════════════════════════════════════════════════
+function seedDefaults(){
+  if(!DB.get('seeded')){
+    DB.set('users',[
+      {id:'u1',name:'Administrator',username:'admin',password:hashPass('admin123'),role:'admin',jabatan:'admin',active:true,createdAt:new Date().toISOString()},
+      {id:'u2',name:'Budi Santoso',username:'budi',password:hashPass('budi123'),role:'user',jabatan:'ketua',active:true,createdAt:new Date().toISOString()},
+      {id:'u3',name:'Sari Dewi',username:'sari',password:hashPass('sari123'),role:'user',jabatan:'anggota',active:true,createdAt:new Date().toISOString()},
+    ]);
+    DB.set('scenarios', DEFAULT_SCENARIOS);
+    DB.set('results',[]);
+    DB.set('seeded',true);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// DEFAULT SCENARIOS DATA
+// ═══════════════════════════════════════════════════════════════════════
+const DEFAULT_SCENARIOS = [
+  {
+    id:'s1', active:true,
+    title:"Indikasi Fraud Klaim Kendaraan Bermotor",
+    theme:"Audit Klaim", risk:"high",
+    iia:"IIA Std. 13.1 · 13.3 — Evidence & Fraud · Domain V",
+    compKetua:["DEC","TLE","MIM","BOR"],
+    compAnggota:["ATH","ISE","COA","DDR"],
+    dilema:"Tim audit sedang memeriksa portofolio klaim kendaraan bermotor. Anggota tim menemukan 14 klaim dalam 3 bulan terakhir di wilayah yang sama, semua melibatkan bengkel rekanan yang sama, dengan pola kerugian parsial yang hampir identik (rata-rata Rp 18 juta/klaim). Loss ratio segmen ini melonjak dari 62% ke 91% dalam satu kuartal. Kepala Bagian Klaim meyakini ini wajar karena \"musim hujan meningkatkan kecelakaan\", namun tidak dapat menunjukkan data historis pendukung yang memadai. Survei salvage menunjukkan beberapa kendaraan yang diklaim tidak terdeteksi kerusakannya secara fisik.",
+    qKetua:"Sebagai Ketua Tim Audit, bagaimana langkah strategis Anda menghadapi situasi ini?",
+    qAnggota:"Sebagai Anggota Tim Audit, apa tindakan investigatif paling tepat yang Anda lakukan?",
+    choicesKetua:[
+      {opt:"A",text:"Segera eskalasi ke Komite Audit dengan data yang ada saat ini, tanpa menunggu investigasi lebih lanjut agar tidak ada bukti yang hilang.",level:2,out:"Eskalasi prematur tanpa bukti cukup. Komite Audit akan mempertanyakan dasar temuan dan kredibilitas tim melemah."},
+      {opt:"B",text:"Rancang joint investigation: koordinasi dengan Divisi Aktuaria untuk analisis tren loss ratio, minta IT menarik data transaksi bengkel rekanan 12 bulan, dan lakukan site visit ke 5 klaim teratas sebagai sampel. Baru eskalasi dengan bukti komprehensif.",level:5,out:"Pendekatan sistematis level 5. Menggabungkan analisis data, kolaborasi lintas divisi, dan bukti lapangan. Temuan kuat dan tidak terbantahkan."},
+      {opt:"C",text:"Tunda engagement, konsultasikan dulu ke senior auditor apakah ini termasuk fraud atau sekadar anomali statistik.",level:2,out:"Ketergantungan berlebihan. Sebagai Ketua Tim, keputusan taktis investigasi adalah tanggung jawab Anda. Momentum investigasi hilang."},
+      {opt:"D",text:"Konfrontasi langsung Kepala Bagian Klaim dalam exit meeting awal, tuntut penjelasan tertulis dalam 24 jam.",level:1,out:"Kontraproduktif. Auditee menjadi defensif, bukti bisa dimanipulasi, dan hubungan kerja rusak."},
+    ],
+    choicesAnggota:[
+      {opt:"A",text:"Dokumentasikan pola 14 klaim dalam kertas kerja, lalu serahkan ke Ketua Tim untuk diputuskan langkah selanjutnya.",level:2,out:"Pasif dan kurang inisiatif. Anggota tim diharapkan proaktif dalam analisis."},
+      {opt:"B",text:"Bangun matriks analisis: bandingkan tanggal klaim, nomor polisi, bengkel, adjuster, dan foto klaim. Cari pola koneksi menggunakan link analysis sederhana di Excel. Cross-check dengan database BPKB dan data survei lapangan.",level:5,out:"Analitis level 5. Link analysis dan cross-referensi multi-sumber adalah pendekatan fraud examination yang tepat."},
+      {opt:"C",text:"Hubungi langsung bengkel rekanan untuk konfirmasi apakah klaim-klaim tersebut valid.",level:1,out:"Berbahaya. Kontak langsung ke pihak yang berpotensi terlibat bisa merusak integritas bukti dan memperingatkan pelaku."},
+      {opt:"D",text:"Hitung ulang loss ratio per bulan dan laporkan anomali tersebut sebagai temuan dengan rekomendasi agar manajemen melakukan review internal.",level:3,out:"Cukup baik sebagai langkah awal, tapi belum menggali akar masalah."},
+    ],
+  },
+  {
+    id:'s2', active:true,
+    title:"Pelanggaran Wewenang Diskon Premi Underwriting",
+    theme:"Audit Underwriting", risk:"high",
+    iia:"IIA Std. 15.2 · 15.4 — Objectivity & Independence · Domain II",
+    compKetua:["HPA","DEC","EST","SOR"],
+    compAnggota:["COA","ISE","ATH","BOR"],
+    dilema:"Audit underwriting lini property menemukan bahwa seorang Underwriter Senior memberikan diskon premi rata-rata 18% kepada 9 nasabah korporat selama 6 bulan terakhir, melebihi batas kewenangannya sebesar 12% (sesuai SK Direksi). Total selisih premi yang tidak sesuai kewenangan mencapai Rp 1,2 miliar. Underwriter berdalih bahwa diskon diberikan untuk mempertahankan nasabah strategis dari persaingan kompetitor, dan sudah ada \"persetujuan lisan\" dari Kepala Divisi. Kepala Divisi tidak mengingat persetujuan tersebut. Dokumen endorsement tidak mencantumkan catatan persetujuan tambahan.",
+    qKetua:"Sebagai Ketua Tim Audit, bagaimana Anda menangani konflik keterangan antara Underwriter dan Kepala Divisi?",
+    qAnggota:"Sebagai Anggota Tim Audit, bagaimana Anda memastikan kelengkapan dan validitas bukti temuan ini?",
+    choicesKetua:[
+      {opt:"A",text:"Catat saja perbedaan keterangan dalam laporan, dan rekomendasikan manajemen untuk menyelesaikan secara internal.",level:2,out:"Terlalu pasif. Perbedaan keterangan adalah inti temuan yang harus diklarifikasi."},
+      {opt:"B",text:"Lakukan wawancara terpisah dan terstruktur kepada kedua pihak dengan panduan pertanyaan yang sama. Minta bukti komunikasi (email, chat resmi, notulen rapat). Sajikan temuan berdasarkan fakta dokumen, bukan keterangan lisan semata.",level:5,out:"Level 5. Pendekatan investigatif yang objektif: pisahkan wawancara, cari bukti dokumentatif, dan bangun temuan di atas fakta."},
+      {opt:"C",text:"Percayai keterangan Kepala Divisi karena jabatannya lebih tinggi, dan jadikan temuan sebagai pelanggaran murni oleh Underwriter.",level:1,out:"Bias jabatan yang berbahaya. Audit harus objektif — keterangan siapapun harus didukung bukti."},
+      {opt:"D",text:"Tunda pelaporan temuan sampai ada penjelasan resmi dari Direksi tentang apa yang dimaksud 'persetujuan lisan'.",level:2,out:"Menunda tanpa dasar. Persetujuan lisan bukan bentuk dokumentasi yang sah dalam audit."},
+    ],
+    choicesAnggota:[
+      {opt:"A",text:"Kumpulkan semua polis yang memberikan diskon >12%, hitung selisih premi, dan lampirkan salinan SK Direksi sebagai kriteria.",level:3,out:"Baik sebagai langkah dasar. Namun belum menggali aspek persetujuan dan konteks bisnis."},
+      {opt:"B",text:"Telusuri seluruh email, notulen rapat, dan log sistem untuk periode tersebut. Buat tabel perbandingan: tanggal endorsement, rate diskon, nama underwriter, dan approval chain dalam sistem. Hitung dampak finansial kumulatif terhadap premium adequacy.",level:5,out:"Level 5. Audit trail komprehensif lintas sumber dengan analisis dampak premium adequacy."},
+      {opt:"C",text:"Minta langsung sistem IT untuk memblokir akses diskon underwriter tersebut sambil menunggu investigasi selesai.",level:1,out:"Di luar wewenang auditor. Internal Audit tidak memiliki otoritas operasional untuk mengubah akses sistem."},
+      {opt:"D",text:"Tanyakan ke bagian Aktuaria apakah diskon sebesar itu masih menghasilkan profit underwriting yang memadai.",level:3,out:"Inisiatif kolaborasi yang baik, tapi belum menjawab aspek kepatuhan prosedur yang merupakan inti masalah."},
+    ],
+  },
+  {
+    id:'s3', active:true,
+    title:"Ketidakpatuhan Penempatan Reasuransi Treaty",
+    theme:"Audit Reasuransi", risk:"high",
+    iia:"IIA Std. 11.1 · 13.1 — Risk Planning & Evidence · Domain IV & V",
+    compKetua:["SOR","DEC","MIM","BOR"],
+    compAnggota:["COA","ATH","ISE","PSO"],
+    dilema:"Dalam audit reasuransi, ditemukan bahwa 6 risiko properti industri dengan nilai pertanggungan di atas Rp 50 miliar ditempatkan secara facultative, padahal berdasarkan treaty arrangement yang berlaku, risiko tersebut seharusnya masuk dalam automatic treaty dengan retensi 20% dan ceding ke pool reinsurer sebesar 80%. Perusahaan menanggung 100% risiko tanpa dukungan reasuransi memadai. Total eksposur tidak terlindungi mencapai Rp 240 miliar. Manajer Reasuransi berargumen bahwa facultative dipilih karena kondisi treaty sudah hampir penuh (near-capacity), namun tidak ada dokumentasi pendukung.",
+    qKetua:"Sebagai Ketua Tim, apa keputusan Anda terkait eskalasi temuan ini mengingat potensi eksposur yang sangat besar?",
+    qAnggota:"Sebagai Anggota Tim, bagaimana Anda memverifikasi klaim 'near-capacity' yang diajukan Manajer Reasuransi?",
+    choicesKetua:[
+      {opt:"A",text:"Masukkan sebagai temuan medium karena mungkin ada alasan bisnis yang valid dan tunggu klarifikasi dari Manajer Reasuransi.",level:2,out:"Underestimasi risiko yang serius. Eksposur Rp 240 miliar tanpa proteksi reasuransi adalah material risk."},
+      {opt:"B",text:"Klasifikasikan sebagai temuan kritis. Susun executive summary dengan proyeksi worst-case scenario dan rekomendasikan eskalasi segera ke Direktur Teknik dan Komite Manajemen Risiko — bersamaan dengan rekomendasi perbaikan treaty review cycle.",level:5,out:"Level 5. Klasifikasi tepat, stakeholder yang benar, dan rekomendasi struktural jangka panjang."},
+      {opt:"C",text:"Rekomendasikan agar 6 polis tersebut segera di-retrocede ke reinsurer sehingga eksposur berkurang sebelum laporan selesai.",level:2,out:"Melampaui mandate audit. Rekomendasi operasional teknis bukan wewenang Internal Audit."},
+      {opt:"D",text:"Tunda penerbitan laporan sampai mendapat konfirmasi kapasitas treaty dari reinsurer secara langsung.",level:1,out:"Tidak perlu. Verifikasi kapasitas treaty adalah tugas bagian Reasuransi. Menunda laporan melemahkan independensi."},
+    ],
+    choicesAnggota:[
+      {opt:"A",text:"Percayai keterangan Manajer Reasuransi dan catat 'near-capacity' sebagai mitigating factor dalam temuan.",level:1,out:"Terlalu mudah percaya klaim yang tidak didukung dokumen. Prinsip dasar audit: sufficient appropriate evidence."},
+      {opt:"B",text:"Minta laporan capacity utilization treaty dari sistem reasuransi atau dari broker reasuransi, bandingkan dengan bordereau ceding yang tercatat. Hitung sisa kapasitas treaty pada tanggal masing-masing penempatan. Jika tidak ada data, absennya dokumentasi itu sendiri adalah temuan.",level:5,out:"Level 5. Verifikasi via bordereau, dan mengidentifikasi bahwa absennya dokumentasi IS the finding."},
+      {opt:"C",text:"Hubungi reinsurer langsung untuk mengkonfirmasi kapasitas yang tersedia pada periode tersebut.",level:2,out:"Inisiatif baik namun berlebihan. Kontak langsung ke pihak eksternal perlu persetujuan dan bisa menciptakan masalah hubungan bisnis."},
+      {opt:"D",text:"Hitung saja potensi kerugian maksimal dari 6 polis tersebut dan sajikan sebagai exposure analysis.",level:3,out:"Langkah berguna untuk dampak, tapi tidak menjawab pertanyaan kepatuhan penempatan dan klaim near-capacity."},
+    ],
+  },
+  {
+    id:'s4', active:true,
+    title:"Manipulasi Komisi Agen dan Penagihan Premi Fiktif",
+    theme:"Audit Penagihan Premi & Komisi", risk:"high",
+    iia:"IIA Std. 13.3 · 13.4 — Fraud & Irregularities · Domain V",
+    compKetua:["HPA","DEC","CEC","MIM"],
+    compAnggota:["COA","DDR","ISE","ATH"],
+    dilema:"Audit penagihan menemukan anomali: 3 agen dengan kode yang sama mencatat produksi premi baru sebesar Rp 3,8 miliar dalam satu kuartal, namun 60% polis yang tercatat belum terbayar setelah 90 hari (melewati grace period). Komisi agen sudah dibayarkan penuh berdasarkan premi yang tercatat, bukan yang diterima. Ditemukan juga bahwa kontak nasabah dari 22 polis tidak dapat dihubungi, dan 5 alamat tertanggung adalah lokasi yang sama (ruko di pinggiran kota). Bagian Finance mencatat outstanding premium tersebut sebagai piutang lancar, padahal seharusnya doubtful.",
+    qKetua:"Sebagai Ketua Tim, bagaimana Anda mengkoordinasikan temuan yang melibatkan tiga divisi sekaligus (Agen, Finance, dan IT)?",
+    qAnggota:"Sebagai Anggota Tim, teknik audit apa yang paling efektif untuk mengungkap pola manipulasi ini?",
+    choicesKetua:[
+      {opt:"A",text:"Buat tiga laporan terpisah untuk tiga divisi agar masing-masing fokus pada area tanggung jawabnya.",level:2,out:"Fragmentasi yang tidak perlu. Temuan ini saling terkait dan harus disajikan secara terintegrasi."},
+      {opt:"B",text:"Koordinasikan temuan lintas divisi dalam satu laporan terpadu dengan root cause analysis bersama. Selenggarakan joint closing meeting dengan ketiga kepala divisi sekaligus, dipimpin bersama CAE untuk memastikan komitmen perbaikan yang jelas.",level:5,out:"Level 5. Laporan terpadu dengan joint closing meeting memastikan akuntabilitas bersama dan mencegah silo."},
+      {opt:"C",text:"Laporkan ke Direksi secara informal dulu sebelum laporan resmi agar manajemen tidak terkejut.",level:2,out:"Melangar prinsip formal reporting. Komunikasi informal sebelum laporan resmi bisa diartikan sebagai bocoran dan merusak independensi."},
+      {opt:"D",text:"Fokus hanya pada divisi Agen sebagai sumber masalah utama, dan rekomendasikan audit lanjutan untuk Finance dan IT.",level:2,out:"Temuan parsial. Inti masalah melibatkan ketiganya — komisi dibayar penuh, piutang salah klasifikasi, data nasabah tidak terverifikasi."},
+    ],
+    choicesAnggota:[
+      {opt:"A",text:"Sampling 30 polis secara random dan verifikasi pembayaran premi melalui rekening koran perusahaan.",level:3,out:"Pendekatan sampling standar yang baik, tapi belum menggunakan teknik analitik yang lebih tajam untuk mengungkap pola sistematis."},
+      {opt:"B",text:"Lakukan data analytics: ekstrak seluruh data polis dari sistem core insurance, filter berdasarkan agen, tanggal terbit, dan status pembayaran. Terapkan Benford's Law pada angka premi untuk mendeteksi angka rekayasa. Cross-match alamat tertanggung dengan database publik dan koordinat GPS.",level:5,out:"Level 5. Kombinasi Benford's Law, data analytics, dan geospatial verification mengungkap pola fraud yang tidak terlihat dengan sampling biasa."},
+      {opt:"C",text:"Hubungi nasabah satu per satu untuk konfirmasi kepemilikan polis.",level:3,out:"Relevan sebagai langkah konfirmasi, tapi tidak efisien jika dilakukan manual untuk semua polis."},
+      {opt:"D",text:"Rekap selisih komisi yang sudah dibayar vs premi yang diterima dan sajikan sebagai kerugian finansial.",level:2,out:"Langkah akhir yang penting, tapi belum mengungkap bagaimana manipulasi terjadi."},
+    ],
+  },
+  {
+    id:'s5', active:true,
+    title:"Ketidaksesuaian Perhitungan RBC ke OJK",
+    theme:"Audit Kepatuhan Regulasi OJK", risk:"high",
+    iia:"IIA Std. 9.2 · 16.2 — Regulatory & Reporting · Domain III & V",
+    compKetua:["SOR","DEC","MIM","CLE"],
+    compAnggota:["COA","ATH","BOR","ISE"],
+    dilema:"Audit kepatuhan menemukan bahwa rasio RBC yang dilaporkan ke OJK dalam dua kuartal terakhir adalah 135% dan 142%, di atas batas minimum 120%. Namun hasil rekonstruksi independen tim audit menunjukkan 108% dan 112% — di bawah minimum. Perbedaan bersumber dari: (1) klasifikasi instrumen investasi sebagai Tier 1 padahal seharusnya Tier 2, dan (2) tidak dimasukkannya seluruh kewajiban teknis IBNR yang seharusnya diperhitungkan. Temuan ini sangat material dan berpotensi menjadi objek pemeriksaan langsung OJK.",
+    qKetua:"Sebagai Ketua Tim, apa pertimbangan strategis Anda dalam menangani temuan dengan implikasi regulatoris sebesar ini?",
+    qAnggota:"Sebagai Anggota Tim, bagaimana Anda memvalidasi hasil rekonstruksi perhitungan RBC yang berbeda dari laporan resmi?",
+    choicesKetua:[
+      {opt:"A",text:"Laporkan temuan dalam laporan audit reguler dengan rekomendasi perbaikan metode perhitungan.",level:2,out:"Underreporting risiko regulatoris. Temuan RBC di bawah minimum bukan sekadar temuan teknis."},
+      {opt:"B",text:"Konsultasikan metodologi rekonstruksi dengan aktuaris internal dan eksternal untuk validasi independen. Setelah terkonfirmasi, sajikan ke Direksi dan Dewan Komisaris dengan skenario risiko (sanksi OJK, reputasi, modal) dan timeline remediasi. Rekomendasikan komunikasi proaktif ke OJK.",level:5,out:"Level 5. Validasi aktuaria + eskalasi ke governing body + skenario risiko regulatoris = penanganan yang strategis."},
+      {opt:"C",text:"Tunda pelaporan temuan ini dan beri kesempatan Finance memperbaiki perhitungan terlebih dahulu sebelum laporan diterbitkan.",level:1,out:"Sangat berbahaya. Menunda pelaporan temuan material bisa dianggap concealment oleh regulator."},
+      {opt:"D",text:"Laporkan ke OJK secara langsung sebagai bentuk whistleblowing.",level:1,out:"Melampaui wewenang. Internal Audit harus melalui governing body perusahaan terlebih dahulu."},
+    ],
+    choicesAnggota:[
+      {opt:"A",text:"Gunakan angka laporan resmi sebagai basis dan hanya catat bahwa ada perbedaan interpretasi standar.",level:1,out:"Tidak objektif. Rekonstruksi independen adalah bukti yang valid dan harus dipertahankan jika metodologinya benar."},
+      {opt:"B",text:"Dokumentasikan step-by-step rekonstruksi RBC: referensi POJK yang berlaku, klasifikasi setiap instrumen investasi, sumber data IBNR dari Aktuaria, dan tabel perbandingan angka resmi vs hasil rekonstruksi. Minta second opinion dari Departemen Aktuaria tanpa membocorkan temuan.",level:5,out:"Level 5. Dokumentasi metodologi lengkap dengan referensi POJK dan second opinion aktuaria membangun temuan yang tidak terbantahkan."},
+      {opt:"C",text:"Hitung ulang sekali lagi untuk memastikan tidak ada kesalahan, lalu langsung eskalasi ke Ketua Tim.",level:3,out:"Langkah tepat tapi belum cukup. Dokumentasi metodologi dan referensi regulasi harus menyertainya."},
+      {opt:"D",text:"Bandingkan dengan RBC perusahaan asuransi lain yang dipublikasikan sebagai benchmark.",level:2,out:"Tidak relevan untuk validasi. Benchmark eksternal tidak dapat memvalidasi metodologi perhitungan yang berbeda."},
+    ],
+  },
+  {
+    id:'s6', active:true,
+    title:"Kerentanan Akun Ex-Karyawan di Sistem Core Insurance",
+    theme:"Audit IT & Keamanan Data", risk:"high",
+    iia:"IIA Std. 14.2 · 13.1 — Technology Risk & Evidence · Domain V",
+    compKetua:["CLE","TLE","DEC","CEC"],
+    compAnggota:["DLI","DDR","ATH","ISE"],
+    dilema:"Audit IT menemukan 47 user account aktif milik karyawan yang sudah resign dalam 12 bulan terakhir, termasuk 3 di level manajer. Salah satu akun mantan manajer IT masih memiliki hak akses administrator ke database polis dan klaim. Log aktivitas menunjukkan 12 login dari luar jam kerja menggunakan akun-akun tersebut dalam 3 bulan terakhir, dengan aktivitas query ke tabel data nasabah. Vendor sistem mengklaim proses deaktivasi adalah tanggung jawab HR, sementara HR mengklaim notifikasi ke IT sudah selalu dikirim.",
+    qKetua:"Sebagai Ketua Tim, bagaimana Anda memimpin penanganan temuan dengan implikasi data breach yang potensial ini?",
+    qAnggota:"Sebagai Anggota Tim, apa investigasi teknis yang Anda lakukan untuk mengonfirmasi potensi data breach?",
+    choicesKetua:[
+      {opt:"A",text:"Rekomendasikan agar IT segera menonaktifkan semua akun ex-karyawan dan buat SOP baru untuk proses offboarding.",level:3,out:"Rekomendasi yang tepat tapi reaktif. Perlu memimpin proses respons yang lebih komprehensif termasuk potensi breach yang sudah terjadi."},
+      {opt:"B",text:"Deklarasikan sebagai potential data breach incident. Koordinasikan immediate response team (IT Security, Legal, Compliance) untuk preserve log evidence, assess data yang diakses, dan tentukan kewajiban pelaporan ke OJK sesuai POJK No. 11/2022. Paralel, susun temuan audit dengan timeline insiden.",level:5,out:"Level 5. Memimpin incident response terkoordinasi, mempreservasi bukti, dan mempertimbangkan kewajiban regulatoris POJK."},
+      {opt:"C",text:"Tunggu konfirmasi dari IT Security apakah ada data yang benar-benar dicuri sebelum eskalasi ke manajemen.",level:2,out:"Menunda terlalu lama. Kehadiran akun aktif ex-karyawan dengan akses admin dan login mencurigakan sudah cukup untuk eskalasi."},
+      {opt:"D",text:"Audit ini sudah selesai — rekomendasikan audit IT lanjutan khusus untuk mengungkap insiden ini.",level:1,out:"Melepas tanggung jawab. Temuan material harus ditindaklanjuti, bukan dilimpahkan ke audit berikutnya."},
+    ],
+    choicesAnggota:[
+      {opt:"A",text:"Daftar 47 akun, identifikasi jabatan terakhir, dan rekomendasikan deaktivasi segera.",level:2,out:"Langkah administratif yang perlu, tapi belum menjawab pertanyaan kunci: apa yang dilakukan akun-akun tersebut saat login?"},
+      {opt:"B",text:"Ekstrak dan analisis access log secara mendetail: IP address, timestamp, jenis query (SELECT/UPDATE/DELETE), tabel yang diakses. Korelasikan dengan jadwal resign untuk membangun timeline. Identifikasi volume data yang di-query dan apakah ada eksfiltrasi (export ke CSV/Excel).",level:5,out:"Level 5. Forensic log analysis komprehensif menghasilkan bukti spesifik tentang apa yang terjadi."},
+      {opt:"C",text:"Coba login menggunakan salah satu akun yang masih aktif untuk membuktikan bahwa akun tersebut memang bisa diakses.",level:1,out:"Sangat dilarang. Mengakses sistem menggunakan akun orang lain adalah pelanggaran etika, hukum, dan standar IIA."},
+      {opt:"D",text:"Bandingkan daftar akun aktif dengan daftar karyawan aktif di HRIS dan laporkan perbedaannya.",level:3,out:"Langkah verifikasi yang tepat dan perlu, tapi hanya mengkonfirmasi keberadaan masalah."},
+    ],
+  },
+  {
+    id:'s7', active:true,
+    title:"Penolakan Temuan oleh Kepala Divisi di Closing Meeting",
+    theme:"Manajemen Konflik Auditee", risk:"med",
+    iia:"IIA Std. 16.1 · 15.1 — Communication & Integrity · Domain V & II",
+    compKetua:["DEC","EST","TLE","HPA"],
+    compAnggota:["COA","ADA","MIM","PSO"],
+    dilema:"Dalam closing meeting audit klaim, Kepala Divisi Klaim secara keras menolak 3 dari 5 temuan yang disajikan. Ia berargumen bahwa tim audit \"tidak memahami dinamika bisnis asuransi\" dan meminta agar 3 temuan tersebut dihapus dari laporan. Dua anggota tim auditor terlihat ragu-ragu mempertahankan temuan mereka. Satu temuan yang ditolak terkait dengan pola klaim yang diklasifikasikan sebagai \"indikasi fraud\", sementara Kepala Divisi bersikeras itu adalah \"keputusan bisnis yang sah\". Ada ancaman implisit bahwa Kepala Divisi akan \"berbicara langsung dengan Direktur\".",
+    qKetua:"Sebagai Ketua Tim, bagaimana Anda memimpin dan mempertahankan integritas rapat dalam situasi konflik ini?",
+    qAnggota:"Sebagai Anggota Tim yang diminta mempertahankan temuan Anda, bagaimana respons Anda?",
+    choicesKetua:[
+      {opt:"A",text:"Setuju untuk menghapus 2 temuan yang paling diperdebatkan untuk menjaga hubungan baik, tapi pertahankan temuan fraud.",level:1,out:"Kompromi integritas yang fatal. Menghapus temuan berdasarkan tekanan adalah pelanggaran independensi auditor dan standar IIA."},
+      {opt:"B",text:"Skors rapat 15 menit, konsolidasi tim audit secara privat untuk memperkuat argumentasi berbasis bukti. Saat dilanjutkan, sajikan ulang setiap temuan dengan merujuk dokumen dan standar yang dilanggar. Tegaskan bahwa temuan dapat disertai management response auditee dalam laporan final. Catat seluruh penolakan secara formal.",level:5,out:"Level 5. De-eskalasi tanpa mengompromikan integritas. Management response adalah praktik terbaik IIA."},
+      {opt:"C",text:"Persilakan Kepala Divisi berbicara ke Direktur — dan Anda sendiri juga akan melapor ke Direktur mengenai penolakan ini.",level:3,out:"Reaksi yang bisa dipahami namun eskalasi langsung bisa memperburuk situasi."},
+      {opt:"D",text:"Tunda closing meeting, minta waktu seminggu untuk melakukan verifikasi tambahan atas temuan yang ditolak.",level:2,out:"Memberi sinyal bahwa tekanan bekerja. Temuan sudah berbasis bukti — menunda seolah mengakui ada kelemahan."},
+    ],
+    choicesAnggota:[
+      {opt:"A",text:"Diam dan tunggu arahan dari Ketua Tim — ini bukan tanggung jawab saya untuk berargumen.",level:1,out:"Tidak menunjukkan ownership atas pekerjaan sendiri. Anggota tim diharapkan dapat mempertahankan hasil kerjanya."},
+      {opt:"B",text:"Dengan tenang dan profesional, tunjukkan dokumen pendukung spesifik yang menjadi dasar temuan. Jelaskan metodologi yang digunakan dan standar audit yang dirujuk. Sampaikan bahwa Anda terbuka terhadap bukti tambahan dari auditee jika ada yang belum dipertimbangkan.",level:5,out:"Level 5. Mempertahankan temuan dengan bukti, bukan emosi, sambil tetap terbuka terhadap informasi baru."},
+      {opt:"C",text:"Minta maaf atas ketidaknyamanan dan tawarkan untuk mereview ulang temuan setelah rapat.",level:2,out:"Terlalu akomodatif. Permintaan maaf yang tidak perlu memberi kesan temuan ada yang salah."},
+      {opt:"D",text:"Jelaskan bahwa Anda hanya menjalankan perintah Ketua Tim dan temuan ini bukan keputusan pribadi Anda.",level:1,out:"Lempar tanggung jawab yang tidak profesional. Anda bertanggung jawab atas kertas kerja yang Anda buat."},
+    ],
+  },
+];
+
+// ═══════════════════════════════════════════════════════════════════════
+// APP STATE
+// ═══════════════════════════════════════════════════════════════════════
+let APP = {
+  session: null,        // { userId, role, name, jabatan }
+  view: 'login',        // login | dashboard | game | admin-users | admin-scenarios | admin-results | edit-scenario | edit-user
+  editTarget: null,     // for edit views
+  gameState: null,
+  modal: null,
+  alert: null,
+};
+
+function setView(v, extra={}){ APP.view=v; Object.assign(APP, extra); render(); }
+function setAlert(msg, type='info'){ APP.alert={msg,type}; render(); }
+function clearAlert(){ APP.alert=null; }
+
+// ═══════════════════════════════════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════════════════════════════════
+function login(username, password){
+  const users = DB.get('users')||[];
+  const u = users.find(x=>x.username===username && x.password===hashPass(password) && x.active);
+  if(!u) return false;
+  APP.session = {userId:u.id, role:u.role, name:u.name, jabatan:u.jabatan};
+  DB.set('session', APP.session);
+  return true;
+}
+function logout(){ APP.session=null; DB.del('session'); setView('login'); }
+function restoreSession(){ const s=DB.get('session'); if(s){ APP.session=s; return true; } return false; }
+
+// ═══════════════════════════════════════════════════════════════════════
+// GAME LOGIC
+// ═══════════════════════════════════════════════════════════════════════
+function cl(v){ return Math.max(0,Math.min(100,v)); }
+function scColor(v){ return v>=70?'#2D6A2D':v>=45?'#7A4F0D':'#8B2020'; }
+
+function initGame(jabatan){
+  const scenarios = (DB.get('scenarios')||[]).filter(s=>s.active);
+  const COMPS_ALL = ['AOR','ADA','CSO','DDR','DLI','CLE','DOT','HPA','SOR','TLE','ATH','BOR','CEC','CCE','COA','DEC','EST','ISE','INN','MIM','PSO'];
+  const compScores = {};
+  COMPS_ALL.forEach(c=>{ compScores[c]=60; });
+  APP.gameState = {
+    jabatan, scenarios,
+    round:0, akurasi:60, dampak:60, kompetensi:60,
+    chosen:null, answers:[], compScores, phase:'play'
+  };
+}
+
+function gameChoose(i){
+  const G = APP.gameState;
+  if(G.chosen!==null) return;
+  G.chosen=i;
+  const sc = G.scenarios[G.round];
+  const isKetua = G.jabatan==='ketua';
+  const choices = isKetua ? sc.choicesKetua : sc.choicesAnggota;
+  const comps = isKetua ? sc.compKetua : sc.compAnggota;
+  const c = choices[i];
+  const delta = c.level>=4?15:c.level===3?5:c.level===2?-8:-15;
+  G.akurasi  = cl(G.akurasi  + delta + (Math.random()*6-3));
+  G.dampak   = cl(G.dampak   + delta + (Math.random()*6-3));
+  G.kompetensi=cl(G.kompetensi+delta+ (Math.random()*6-3));
+  const lDelta=(c.level-3)*8;
+  comps.forEach(code=>{ G.compScores[code]=cl((G.compScores[code]||60)+lDelta); });
+  G.answers.push({round:G.round, choice:i, level:c.level, title:sc.title});
+  render();
+}
+
+function gameNext(){
+  const G = APP.gameState;
+  if(G.round < G.scenarios.length-1){ G.round++; G.chosen=null; }
+  else {
+    G.phase='result';
+    const avg=Math.round((G.akurasi+G.dampak+G.kompetensi)/3);
+    const result = {
+      id:'r'+Date.now(), userId:APP.session.userId, name:APP.session.name,
+      jabatan:G.jabatan, akurasi:Math.round(G.akurasi), dampak:Math.round(G.dampak),
+      kompetensi:Math.round(G.kompetensi), avg, compScores:{...G.compScores},
+      answers:G.answers, completedAt:new Date().toISOString()
+    };
+    const results = DB.get('results')||[];
+    results.push(result);
+    DB.set('results',results);
+  }
+  render();
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// RENDER ENGINE
+// ═══════════════════════════════════════════════════════════════════════
+function render(){
+  document.getElementById('root').innerHTML = buildPage();
+  bindEvents();
+}
+
+function buildPage(){
+  if(APP.view==='login') return renderLogin();
+  return `
+    ${renderTopbar()}
+    <div class="page">
+      ${APP.alert?renderAlert():''}
+      ${APP.view==='dashboard'?renderDashboard():''}
+      ${APP.view==='game'?renderGame():''}
+      ${APP.view==='admin-users'?renderAdminUsers():''}
+      ${APP.view==='admin-scenarios'?renderAdminScenarios():''}
+      ${APP.view==='admin-results'?renderAdminResults():''}
+      ${APP.view==='edit-scenario'?renderEditScenario():''}
+      ${APP.view==='edit-user'?renderEditUser():''}
+    </div>`;
+}
+
+function renderAlert(){
+  const {msg,type} = APP.alert;
+  return `<div class="alert alert-${type}" id="alertBox">${msg} <span style="float:right;cursor:pointer;opacity:.6" onclick="clearAlert();render()">✕</span></div>`;
+}
+
+// ─── LOGIN ──────────────────────────────────────────────────────────────
+function renderLogin(){
+  return `<div class="login-wrap">
+    <div class="card login-card">
+      <div class="login-header">
+        <div class="eyebrow" style="margin-bottom:8px;">Internal Audit Division · Asuransi Umum Indonesia</div>
+        <h1>Audit Competency<br>Strategy Assessment</h1>
+        <p style="margin-top:6px;font-size:12px;color:var(--text3);">Global Internal Audit Standards (GIAS) IIA 2024</p>
+      </div>
+      <div class="form-row">
+        <label>Username</label>
+        <input type="text" id="loginUser" placeholder="Masukkan username..." autocomplete="username"/>
+      </div>
+      <div class="form-row">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="Masukkan password..." autocomplete="current-password"/>
+      </div>
+      <div id="loginErr" style="display:none;color:var(--red);font-size:13px;margin-bottom:.75rem;"></div>
+      <button class="btn btn-primary" style="width:100%" id="loginBtn">Masuk →</button>
+      <p style="margin-top:1rem;font-size:11px;color:var(--text3);text-align:center;">Demo: admin / admin123 &nbsp;·&nbsp; budi / budi123 &nbsp;·&nbsp; sari / sari123</p>
+    </div>
+  </div>`;
+}
+
+// ─── TOPBAR ────────────────────────────────────────────────────────────
+function renderTopbar(){
+  const s = APP.session;
+  const adminLinks = s.role==='admin' ? `
+    <button class="topbar-btn" onclick="setView('admin-users')">Kelola User</button>
+    <button class="topbar-btn" onclick="setView('admin-scenarios')">Kelola Soal</button>
+    <button class="topbar-btn" onclick="setView('admin-results')">Hasil</button>` : '';
+  return `<div class="topbar">
+    <div>
+      <div class="topbar-brand">ACSA <span>Audit Competency Strategy Assessment</span></div>
+    </div>
+    <div class="topbar-right">
+      ${adminLinks}
+      <button class="topbar-btn" onclick="setView('dashboard')">Beranda</button>
+      <span class="topbar-user">${s.name}</span>
+      <button class="topbar-btn" onclick="logout()">Keluar</button>
+    </div>
+  </div>`;
+}
+
+// ─── DASHBOARD ─────────────────────────────────────────────────────────
+function renderDashboard(){
+  const s = APP.session;
+  const results = (DB.get('results')||[]).filter(r=>r.userId===s.userId);
+  const lastResult = results.length ? results[results.length-1] : null;
+  const scenarios = (DB.get('scenarios')||[]).filter(x=>x.active);
+
+  return `
+    <div style="margin-bottom:1.5rem;">
+      <div class="eyebrow" style="margin-bottom:6px;">Selamat datang</div>
+      <h1>${s.name}</h1>
+      <p style="font-size:13px;color:var(--text2);margin-top:4px;">${s.jabatan==='admin'?'Administrator':'Jabatan: '+(s.jabatan==='ketua'?'Ketua Tim Audit':'Anggota Tim Audit')}</p>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item"><div class="meta-num">${scenarios.length}</div><div class="meta-lbl">Soal aktif</div></div>
+      <div class="meta-item"><div class="meta-num">${results.length}</div><div class="meta-lbl">Riwayat asesmen</div></div>
+      <div class="meta-item"><div class="meta-num">${lastResult?lastResult.avg+'/100':'—'}</div><div class="meta-lbl">Skor terakhir</div></div>
+    </div>
+
+    ${s.role==='user' ? `
+    <div class="card" style="margin-bottom:1rem;">
+      <h2>Mulai Asesmen</h2>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;">Pilih jabatan yang sesuai dengan peran Anda saat ini, lalu mulai simulasi 7 skenario audit nyata.</p>
+      <div class="role-grid">
+        <div class="role-card ${s.jabatan==='ketua'?'selected':''}" onclick="startGame('ketua')">
+          <div class="role-name">Ketua Tim Audit</div>
+          <div class="role-desc">Fokus kepemimpinan, pengambilan keputusan strategis, dan manajemen tim. (CLE, SOR, DEC, TLE, HPA)</div>
+        </div>
+        <div class="role-card ${s.jabatan==='anggota'?'selected':''}" onclick="startGame('anggota')">
+          <div class="role-name">Anggota Tim Audit</div>
+          <div class="role-desc">Fokus teknis, ketelitian analisis, dan pengumpulan bukti. (COA, ISE, ATH, DDR, DLI)</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="startGameBtn" onclick="startGame('${s.jabatan||'ketua'}')">Mulai Asesmen Sekarang →</button>
+    </div>` : `
+    <div class="card" style="margin-bottom:1rem;">
+      <h2>Panel Administrator</h2>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;">Kelola pengguna, soal/skenario, dan lihat hasil asesmen seluruh tim.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="setView('admin-users')">Kelola User</button>
+        <button class="btn" onclick="setView('admin-scenarios')">Kelola Soal</button>
+        <button class="btn" onclick="setView('admin-results')">Lihat Hasil</button>
+      </div>
+    </div>`}
+
+    ${lastResult ? `
+    <div class="card">
+      <h3>Hasil Terakhir — ${new Date(lastResult.completedAt).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</h3>
+      <div class="metric-grid">
+        <div class="metric-item"><div class="metric-lbl">Skor Akhir</div><div class="metric-val" style="color:${scColor(lastResult.avg)}">${lastResult.avg}</div></div>
+        <div class="metric-item"><div class="metric-lbl">Akurasi & Bukti</div><div class="metric-val" style="color:${scColor(lastResult.akurasi)}">${lastResult.akurasi}</div></div>
+        <div class="metric-item"><div class="metric-lbl">Dampak Temuan</div><div class="metric-val" style="color:${scColor(lastResult.dampak)}">${lastResult.dampak}</div></div>
+      </div>
+    </div>` : ''}`;
+}
+
+// ─── GAME ──────────────────────────────────────────────────────────────
+function renderGame(){
+  const G = APP.gameState;
+  if(!G) return '<div class="card"><p>Game tidak aktif.</p></div>';
+  if(G.phase==='result') return renderGameResult();
+
+  const sc = G.scenarios[G.round];
+  const isKetua = G.jabatan==='ketua';
+  const choices = isKetua ? sc.choicesKetua : sc.choicesAnggota;
+  const comps = isKetua ? sc.compKetua : sc.compAnggota;
+  const question = isKetua ? sc.qKetua : sc.qAnggota;
+  const avg = Math.round((G.akurasi+G.dampak+G.kompetensi)/3);
+
+  const COMP_GROUPS = {
+    core:['AOR','ADA','CSO','DDR','DLI'],
+    leadership:['CLE','DOT','HPA','SOR','TLE'],
+    specific:['ATH','BOR','CEC','CCE','COA','DEC','EST','ISE','INN','MIM','PSO'],
+  };
+  const compColor = c => COMP_GROUPS.core.includes(c)?'background:#EAF0FA;color:#1B3A6B':COMP_GROUPS.leadership.includes(c)?'background:#E0F5F2;color:#0D6B5E':'background:#EEEBFB;color:#4A3B9C';
+
+  const outBox = G.chosen===null
+    ? `<div class="outcome-box"><div class="ob-lbl">Konteks situasi</div><div style="font-size:13px;color:var(--text2);font-style:italic;line-height:1.6;">Baca skenario di atas lalu pilih tindakan yang paling mencerminkan pendekatan Anda sebagai ${isKetua?'Ketua Tim':'Anggota Tim'} Audit.</div></div>`
+    : (() => {
+        const c = choices[G.chosen];
+        const lvlBg = c.level>=4?'var(--greenl)':c.level===3?'var(--amberl)':'var(--redl)';
+        const lvlCol = c.level>=4?'var(--green)':c.level===3?'var(--amber)':'var(--red)';
+        return `<div class="outcome-box active">
+          <div class="ob-lbl active">Hasil keputusan Anda</div>
+          <div class="ob-txt">${c.out}</div>
+          <div class="eff-pills"><span class="ob-level" style="background:${lvlBg};color:${lvlCol}">Level Kompetensi: ${c.level}/5</span></div>
+        </div>`;
+      })();
+
+  const btns = choices.map((c,i)=>{
+    let cls='cbtn';
+    if(G.chosen!==null) cls+=i===G.chosen?' picked':' faded';
+    return `<button class="${cls}" data-choice="${i}"><span class="opt-label">Pilihan ${c.opt}</span>${c.text}</button>`;
+  }).join('');
+
+  const nxt = G.chosen!==null ? `<button class="btn btn-primary" onclick="gameNext()">${G.round<G.scenarios.length-1?'Skenario Berikutnya →':'Lihat Hasil Asesmen →'}</button>` : '';
+
+  return `
+    <div class="hud-wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;">
+        <div style="font-size:13px;font-weight:600;color:var(--navy)">${APP.session.name}</div>
+        <span class="badge ${isKetua?'badge-ketua':'badge-anggota'}">${isKetua?'Ketua Tim Audit':'Anggota Tim Audit'}</span>
+      </div>
+      <div class="hud-grid">
+        ${[{l:'Akurasi & Bukti',v:Math.round(G.akurasi),c:'#4A3B9C'},{l:'Dampak Temuan',v:Math.round(G.dampak),c:'#0D6B5E'},{l:'Kompetensi',v:Math.round(G.kompetensi),c:'#1B3A6B'},{l:'Rata-rata',v:avg,c:'#1D9E75'}].map(x=>`
+        <div class="hud-stat">
+          <div class="hud-lbl">${x.l}</div>
+          <div class="hud-val" style="color:${scColor(x.v)}">${x.v}</div>
+          <div class="bar-w"><div class="bar-f" style="width:${x.v}%;background:${x.c}"></div></div>
+        </div>`).join('')}
+      </div>
+    </div>
+    <div class="sc-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;">
+        <div class="sc-title-text">${sc.title}</div>
+        <span class="badge ${sc.risk==='high'?'badge-admin':'badge-user'}" style="${sc.risk==='high'?'background:var(--redl);color:var(--red)':'background:var(--amberl);color:var(--amber)'}">${sc.risk==='high'?'Kritis':'Sedang'}</span>
+      </div>
+      <div class="sc-tags">
+        <span class="sc-tag">Skenario ${G.round+1}/${G.scenarios.length}</span>
+        <span class="sc-tag">${sc.theme}</span>
+        <span class="sc-iia">${sc.iia}</span>
+      </div>
+      <div class="comp-tags">${comps.map(c=>`<span class="comp-tag" style="${compColor(c)}">${c}</span>`).join('')}</div>
+      <div class="sc-dilema">${sc.dilema}</div>
+      <div style="height:1px;background:var(--border);margin:12px 0;"></div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;">Pertanyaan untuk ${isKetua?'Ketua Tim':'Anggota Tim'}</div>
+      <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:0;">${question}</div>
+    </div>
+    ${outBox}
+    <div class="choices">${btns}</div>
+    <div class="game-footer">
+      <span class="round-lbl">Skenario ${G.round+1} dari ${G.scenarios.length}</span>
+      ${nxt}
+    </div>`;
+}
+
+function renderGameResult(){
+  const G = APP.gameState;
+  const avg = Math.round((G.akurasi+G.dampak+G.kompetensi)/3);
+  const isKetua = G.jabatan==='ketua';
+  let grade, note, ringCol;
+  if(avg>=80){grade='Auditor Unggulan';note='Keputusan Anda secara konsisten mencerminkan pemikiran strategis, bukti yang kuat, dan dampak yang terukur. Anda siap menghadapi engagement dengan kompleksitas tinggi.';ringCol='var(--green)';}
+  else if(avg>=65){grade='Auditor Kompeten';note='Instink audit Anda solid di sebagian besar skenario. Ada area yang masih bisa diperkuat dengan pengalaman dan refleksi terstruktur.';ringCol='var(--navy)';}
+  else if(avg>=50){grade='Auditor Berkembang';note='Anda menunjukkan potensi yang baik. Fokus pada pendalaman teknik analitis dan keberanian mempertahankan temuan berbasis bukti.';ringCol='var(--amber)';}
+  else{grade='Perlu Pembimbingan Intensif';note='Beberapa pola keputusan menunjukkan tantangan dalam independensi dan kedalaman analisis. Ini titik awal untuk program pengembangan yang terstruktur.';ringCol='var(--red)';}
+
+  const now = new Date();
+  const tgl = now.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+
+  const COMP_GROUPS = [
+    {label:'Core Competency',codes:['AOR','ADA','CSO','DDR','DLI'],color:'#1B3A6B'},
+    {label:'Leadership Competency',codes:['CLE','DOT','HPA','SOR','TLE'],color:'#0D6B5E'},
+    {label:'Specific Competency',codes:['ATH','BOR','CEC','CCE','COA','DEC','EST','ISE','INN','MIM','PSO'],color:'#4A3B9C'},
+  ];
+  const COMP_NAMES = {AOR:'Achievement Orientation',ADA:'Adaptability',CSO:'Customer Service Orientation',DDR:'Data Driven',DLI:'Digital Literacy',CLE:'Change Leadership',DOT:'Developing Others',HPA:'Holding People Accountable',SOR:'Strategic Orientation',TLE:'Team Leadership',ATH:'Analytical Thinking',BOR:'Business Orientation',CEC:'Collaborate with Ecosystem',CCE:'Concern for Cost Efficiency',COA:'Concern for Order & Accuracy',DEC:'Decisiveness',EST:'Engaging Stakeholders',ISE:'Information Seeking',INN:'Innovation',MIM:'Making Impact',PSO:'Problem Solving'};
+
+  const compProfile = COMP_GROUPS.map(g=>`
+    <div style="margin-bottom:1rem;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem;">${g.label}</div>
+      ${g.codes.map(c=>{
+        const v=Math.round(G.compScores[c]||60);
+        return `<div class="cp-row">
+          <div class="cp-name">${c} — ${COMP_NAMES[c]}</div>
+          <div class="cp-bar-w"><div class="cp-bar-f" style="width:${v}%;background:${g.color}"></div></div>
+          <div class="cp-score" style="color:${scColor(v)}">${v}</div>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+
+  return `
+    <div class="result-hero" id="resultCard">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;">Hasil Asesmen Kompetensi Audit</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--text);margin-bottom:4px;">${APP.session.name}</div>
+      <div style="font-size:12px;color:var(--text2);margin-bottom:1.5rem;">${isKetua?'Ketua Tim Audit':'Anggota Tim Audit'} · Internal Audit Division · Asuransi Umum</div>
+      <div class="score-ring" style="border-color:${ringCol}">
+        <div class="score-big" style="color:${ringCol}">${avg}</div>
+        <div class="score-denom">/ 100</div>
+      </div>
+      <div class="r-grade" style="color:${ringCol}">${grade}</div>
+      <div class="r-note">${note}</div>
+      <div class="metric-grid">
+        <div class="metric-item"><div class="metric-lbl">Akurasi & Bukti</div><div class="metric-val" style="color:${scColor(Math.round(G.akurasi))}">${Math.round(G.akurasi)}</div></div>
+        <div class="metric-item"><div class="metric-lbl">Dampak Temuan</div><div class="metric-val" style="color:${scColor(Math.round(G.dampak))}">${Math.round(G.dampak)}</div></div>
+        <div class="metric-item"><div class="metric-lbl">Kompetensi</div><div class="metric-val" style="color:${scColor(Math.round(G.kompetensi))}">${Math.round(G.kompetensi)}</div></div>
+      </div>
+      <div class="timestamp">Diselesaikan: ${tgl}, ${jam} WIB · ACSA v2.0 · Global Internal Audit Standards (IIA 2024)</div>
+    </div>
+    <div class="section-sep"><span>Profil 21 Kompetensi</span><hr/></div>
+    <div class="card">${compProfile}</div>
+    <div class="btn-row no-print">
+      <button class="btn" onclick="window.print()">Cetak / Simpan PDF</button>
+      <button class="btn" onclick="copyResultText(${avg})">Salin Ringkasan</button>
+      <button class="btn btn-primary" onclick="setView('dashboard')">Kembali ke Beranda</button>
+    </div>`;
+}
+
+// ─── ADMIN: USERS ──────────────────────────────────────────────────────
+function renderAdminUsers(){
+  const users = DB.get('users')||[];
+  const rows = users.map(u=>`
+    <tr>
+      <td>${u.name}</td>
+      <td><code style="font-size:12px">${u.username}</code></td>
+      <td><span class="badge ${u.role==='admin'?'badge-admin':'badge-user'}">${u.role==='admin'?'Admin':'User'}</span></td>
+      <td><span class="badge ${u.jabatan==='ketua'?'badge-ketua':u.jabatan==='anggota'?'badge-anggota':'badge-admin'}">${u.jabatan}</span></td>
+      <td><span style="color:${u.active?'var(--green)':'var(--red)';}">${u.active?'Aktif':'Nonaktif'}</span></td>
+      <td>
+        <button class="btn btn-sm" onclick="editUser('${u.id}')">Edit</button>
+        <button class="btn btn-sm btn-danger" onclick="toggleUser('${u.id}')">${u.active?'Nonaktifkan':'Aktifkan'}</button>
+        ${u.id!=='u1'?`<button class="btn btn-sm btn-danger" onclick="deleteUser('${u.id}')">Hapus</button>`:''}
+      </td>
+    </tr>`).join('');
+
+  return `
+    <div class="section-header">
+      <h2>Manajemen Pengguna</h2>
+      <button class="btn btn-primary" onclick="setView('edit-user',{editTarget:null})">+ Tambah User</button>
+    </div>
+    <div class="card" style="overflow-x:auto;">
+      <table class="tbl">
+        <thead><tr><th>Nama</th><th>Username</th><th>Role</th><th>Jabatan</th><th>Status</th><th>Aksi</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+function renderEditUser(){
+  const u = APP.editTarget ? (DB.get('users')||[]).find(x=>x.id===APP.editTarget) : null;
+  const isNew = !u;
+  return `
+    <div class="section-header">
+      <h2>${isNew?'Tambah Pengguna Baru':'Edit Pengguna'}</h2>
+      <button class="btn" onclick="setView('admin-users')">← Kembali</button>
+    </div>
+    <div class="card">
+      <div class="form-grid">
+        <div class="form-row"><label>Nama Lengkap</label><input id="euName" value="${u?.name||''}"/></div>
+        <div class="form-row"><label>Username</label><input id="euUser" value="${u?.username||''}"/></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-row"><label>Password ${isNew?'':'(kosongkan jika tidak diubah)'}</label><input type="password" id="euPass" placeholder="${isNew?'Wajib diisi':'Biarkan kosong'}" autocomplete="new-password"/></div>
+        <div class="form-row"><label>Konfirmasi Password</label><input type="password" id="euPass2" placeholder="Ulangi password" autocomplete="new-password"/></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-row"><label>Role</label>
+          <select id="euRole">
+            <option value="user" ${u?.role==='user'?'selected':''}>User (Peserta)</option>
+            <option value="admin" ${u?.role==='admin'?'selected':''}>Admin</option>
+          </select>
+        </div>
+        <div class="form-row"><label>Jabatan</label>
+          <select id="euJabatan">
+            <option value="ketua" ${u?.jabatan==='ketua'?'selected':''}>Ketua Tim Audit</option>
+            <option value="anggota" ${u?.jabatan==='anggota'?'selected':''}>Anggota Tim Audit</option>
+            <option value="admin" ${u?.jabatan==='admin'?'selected':''}>Admin</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="saveUser('${u?.id||''}')">Simpan</button>
+        <button class="btn" onclick="setView('admin-users')">Batal</button>
+      </div>
+    </div>`;
+}
+
+// ─── ADMIN: SCENARIOS ──────────────────────────────────────────────────
+function renderAdminScenarios(){
+  const scenarios = DB.get('scenarios')||[];
+  const rows = scenarios.map(s=>`
+    <tr>
+      <td style="max-width:200px;"><strong style="font-size:13px;">${s.title}</strong></td>
+      <td><span class="sc-tag">${s.theme}</span></td>
+      <td><span class="badge ${s.risk==='high'?'':'badge-user'}" style="${s.risk==='high'?'background:var(--redl);color:var(--red)':''}">${s.risk==='high'?'Kritis':'Sedang'}</span></td>
+      <td><span style="color:${s.active?'var(--green)':'var(--red)'};">${s.active?'Aktif':'Nonaktif'}</span></td>
+      <td>
+        <button class="btn btn-sm" onclick="editScenario('${s.id}')">Edit</button>
+        <button class="btn btn-sm btn-danger" onclick="toggleScenario('${s.id}')">${s.active?'Nonaktifkan':'Aktifkan'}</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteScenario('${s.id}')">Hapus</button>
+      </td>
+    </tr>`).join('');
+
+  return `
+    <div class="section-header">
+      <h2>Manajemen Soal / Skenario</h2>
+      <button class="btn btn-primary" onclick="newScenario()">+ Tambah Soal</button>
+    </div>
+    <div class="alert alert-info">Soal yang dinonaktifkan tidak akan muncul dalam asesmen. Peserta hanya melihat soal berstatus Aktif.</div>
+    <div class="card" style="overflow-x:auto;">
+      <table class="tbl">
+        <thead><tr><th>Judul Skenario</th><th>Tema</th><th>Risiko</th><th>Status</th><th>Aksi</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+function renderEditScenario(){
+  const s = APP.editTarget;
+  const isNew = !s.id;
+
+  const buildChoiceEditor = (choices, prefix, role) => choices.map((c,i)=>`
+    <div class="choice-editor">
+      <div style="font-size:12px;font-weight:600;color:var(--navy);margin-bottom:.5rem;">Pilihan ${c.opt} — ${role}</div>
+      <div class="form-row"><label>Teks Pilihan</label><textarea id="${prefix}_text_${i}" rows="2">${c.text}</textarea></div>
+      <div class="form-row"><label>Hasil / Feedback setelah dipilih</label><textarea id="${prefix}_out_${i}" rows="2">${c.out}</textarea></div>
+      <div class="choice-level">
+        <label>Level Kompetensi:</label>
+        <input type="number" id="${prefix}_level_${i}" value="${c.level}" min="1" max="5" step="1"/>
+        <span style="font-size:12px;color:var(--text3);">(1=Dasar, 5=Expert)</span>
+      </div>
+    </div>`).join('');
+
+  return `
+    <div class="section-header">
+      <h2>${isNew?'Tambah Soal Baru':'Edit Soal'}</h2>
+      <button class="btn" onclick="setView('admin-scenarios')">← Kembali</button>
+    </div>
+    <div class="card" style="margin-bottom:1rem;">
+      <h3>Informasi Dasar</h3>
+      <div class="form-row"><label>Judul Skenario</label><input id="esTitle" value="${s.title||''}"/></div>
+      <div class="form-grid">
+        <div class="form-row"><label>Tema</label><input id="esTheme" value="${s.theme||''}" placeholder="cth: Audit Klaim"/></div>
+        <div class="form-row"><label>Risiko</label>
+          <select id="esRisk">
+            <option value="high" ${s.risk==='high'?'selected':''}>Kritis (High)</option>
+            <option value="med" ${s.risk==='med'?'selected':''}>Sedang (Medium)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row"><label>Referensi IIA Standard</label><input id="esIia" value="${s.iia||''}" placeholder="cth: IIA Std. 13.1 — Evidence · Domain V"/></div>
+      <div class="form-row"><label>Kode Kompetensi Ketua Tim (pisahkan koma)</label><input id="esCompK" value="${(s.compKetua||[]).join(',')}"/></div>
+      <div class="form-row"><label>Kode Kompetensi Anggota Tim (pisahkan koma)</label><input id="esCompA" value="${(s.compAnggota||[]).join(',')}"/></div>
+      <div class="form-row"><label>Dilema / Narasi Skenario</label><textarea id="esDilema" rows="5">${s.dilema||''}</textarea></div>
+      <div class="form-row"><label>Pertanyaan untuk Ketua Tim</label><textarea id="esQK" rows="2">${s.qKetua||''}</textarea></div>
+      <div class="form-row"><label>Pertanyaan untuk Anggota Tim</label><textarea id="esQA" rows="2">${s.qAnggota||''}</textarea></div>
+    </div>
+
+    <div class="card" style="margin-bottom:1rem;">
+      <h3>Pilihan Jawaban — Ketua Tim Audit</h3>
+      ${buildChoiceEditor(s.choicesKetua||[{opt:'A',text:'',out:'',level:3},{opt:'B',text:'',out:'',level:5},{opt:'C',text:'',out:'',level:2},{opt:'D',text:'',out:'',level:1}],'ck','Ketua Tim')}
+    </div>
+
+    <div class="card" style="margin-bottom:1rem;">
+      <h3>Pilihan Jawaban — Anggota Tim Audit</h3>
+      ${buildChoiceEditor(s.choicesAnggota||[{opt:'A',text:'',out:'',level:3},{opt:'B',text:'',out:'',level:5},{opt:'C',text:'',out:'',level:2},{opt:'D',text:'',out:'',level:1}],'ca','Anggota Tim')}
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="saveScenario('${s.id||''}')">Simpan Soal</button>
+      <button class="btn" onclick="setView('admin-scenarios')">Batal</button>
+    </div>`;
+}
+
+// ─── ADMIN: RESULTS ────────────────────────────────────────────────────
+function renderAdminResults(){
+  const results = [...(DB.get('results')||[])].reverse();
+  const rows = results.length ? results.map(r=>`
+    <tr>
+      <td>${r.name}</td>
+      <td><span class="badge ${r.jabatan==='ketua'?'badge-ketua':'badge-anggota'}">${r.jabatan==='ketua'?'Ketua Tim':'Anggota Tim'}</span></td>
+      <td style="font-weight:600;color:${scColor(r.avg)}">${r.avg}/100</td>
+      <td>${r.akurasi}</td><td>${r.dampak}</td><td>${r.kompetensi}</td>
+      <td style="font-size:12px;">${new Date(r.completedAt).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}</td>
+      <td><button class="btn btn-sm btn-danger" onclick="deleteResult('${r.id}')">Hapus</button></td>
+    </tr>`).join('')
+  : '<tr><td colspan="8" style="text-align:center;color:var(--text3);padding:2rem;">Belum ada data hasil asesmen.</td></tr>';
+
+  const total = results.length;
+  const avgAll = total ? Math.round(results.reduce((s,r)=>s+r.avg,0)/total) : 0;
+
+  return `
+    <div class="section-header">
+      <h2>Hasil Asesmen Tim</h2>
+      <button class="btn" onclick="exportResults()">Export CSV</button>
+    </div>
+    <div class="meta-grid" style="margin-bottom:1rem;">
+      <div class="meta-item"><div class="meta-num">${total}</div><div class="meta-lbl">Total asesmen</div></div>
+      <div class="meta-item"><div class="meta-num" style="color:${scColor(avgAll)}">${avgAll}</div><div class="meta-lbl">Rata-rata skor</div></div>
+      <div class="meta-item"><div class="meta-num">${(DB.get('users')||[]).filter(u=>u.active&&u.role==='user').length}</div><div class="meta-lbl">Peserta aktif</div></div>
+    </div>
+    <div class="card" style="overflow-x:auto;">
+      <table class="tbl">
+        <thead><tr><th>Nama</th><th>Jabatan</th><th>Skor</th><th>Akurasi</th><th>Dampak</th><th>Kompetensi</th><th>Tanggal</th><th>Aksi</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// EVENT BINDING & ACTIONS
+// ═══════════════════════════════════════════════════════════════════════
+function bindEvents(){
+  // Login
+  const loginBtn = document.getElementById('loginBtn');
+  if(loginBtn){
+    loginBtn.onclick = () => {
+      const u = document.getElementById('loginUser')?.value.trim();
+      const p = document.getElementById('loginPass')?.value;
+      if(!login(u,p)){
+        document.getElementById('loginErr').style.display='block';
+        document.getElementById('loginErr').textContent='Username atau password salah, atau akun tidak aktif.';
+      } else {
+        setView('dashboard');
+      }
+    };
+    document.getElementById('loginPass')?.addEventListener('keydown', e=>{ if(e.key==='Enter') loginBtn.click(); });
+  }
+  // Choice buttons in game
+  document.querySelectorAll('[data-choice]').forEach(btn=>{
+    btn.onclick = () => gameChoose(parseInt(btn.dataset.choice));
+  });
+}
+
+// Game
+function startGame(jabatan){
+  const scenarios = (DB.get('scenarios')||[]).filter(s=>s.active);
+  if(scenarios.length===0){ setAlert('Tidak ada soal aktif. Hubungi administrator.','danger'); return; }
+  initGame(jabatan||APP.session.jabatan||'ketua');
+  setView('game');
+}
+
+// User management
+function editUser(id){ setView('edit-user',{editTarget:id}); }
+function toggleUser(id){
+  const users=DB.get('users')||[];
+  const u=users.find(x=>x.id===id);
+  if(u){ u.active=!u.active; DB.set('users',users); if(APP.session.userId===id){logout();return;} setAlert(`User ${u.name} ${u.active?'diaktifkan':'dinonaktifkan'}.`,'success'); setView('admin-users'); }
+}
+function deleteUser(id){
+  if(!confirm('Hapus pengguna ini? Data tidak dapat dikembalikan.')) return;
+  DB.set('users',(DB.get('users')||[]).filter(x=>x.id!==id));
+  setAlert('Pengguna berhasil dihapus.','success'); setView('admin-users');
+}
+function saveUser(id){
+  const name=document.getElementById('euName')?.value.trim();
+  const username=document.getElementById('euUser')?.value.trim();
+  const pass=document.getElementById('euPass')?.value;
+  const pass2=document.getElementById('euPass2')?.value;
+  const role=document.getElementById('euRole')?.value;
+  const jabatan=document.getElementById('euJabatan')?.value;
+  if(!name||!username){ setAlert('Nama dan username wajib diisi.','danger'); return; }
+  if(!id && !pass){ setAlert('Password wajib diisi untuk user baru.','danger'); return; }
+  if(pass && pass!==pass2){ setAlert('Konfirmasi password tidak cocok.','danger'); return; }
+  const users=DB.get('users')||[];
+  if(!id){
+    if(users.find(u=>u.username===username)){ setAlert('Username sudah digunakan.','danger'); return; }
+    users.push({id:'u'+Date.now(),name,username,password:hashPass(pass),role,jabatan,active:true,createdAt:new Date().toISOString()});
+  } else {
+    const u=users.find(x=>x.id===id);
+    if(u){ u.name=name; u.username=username; u.role=role; u.jabatan=jabatan; if(pass) u.password=hashPass(pass); }
+  }
+  DB.set('users',users);
+  setAlert(`User ${name} berhasil ${!id?'ditambahkan':'diperbarui'}.`,'success');
+  setView('admin-users');
+}
+
+// Scenario management
+function editScenario(id){ APP.editTarget=(DB.get('scenarios')||[]).find(s=>s.id===id)||{}; setView('edit-scenario'); }
+function newScenario(){ APP.editTarget={choicesKetua:[{opt:'A',text:'',out:'',level:3},{opt:'B',text:'',out:'',level:5},{opt:'C',text:'',out:'',level:2},{opt:'D',text:'',out:'',level:1}],choicesAnggota:[{opt:'A',text:'',out:'',level:3},{opt:'B',text:'',out:'',level:5},{opt:'C',text:'',out:'',level:2},{opt:'D',text:'',out:'',level:1}]}; setView('edit-scenario'); }
+function toggleScenario(id){
+  const sc=DB.get('scenarios')||[];
+  const s=sc.find(x=>x.id===id);
+  if(s){ s.active=!s.active; DB.set('scenarios',sc); setAlert(`Soal ${s.active?'diaktifkan':'dinonaktifkan'}.`,'success'); setView('admin-scenarios'); }
+}
+function deleteScenario(id){
+  if(!confirm('Hapus soal ini? Data tidak dapat dikembalikan.')) return;
+  DB.set('scenarios',(DB.get('scenarios')||[]).filter(x=>x.id!==id));
+  setAlert('Soal berhasil dihapus.','success'); setView('admin-scenarios');
+}
+function saveScenario(id){
+  const g = v => document.getElementById(v)?.value.trim()||'';
+  const gn = v => parseInt(document.getElementById(v)?.value)||3;
+  const title=g('esTitle'), theme=g('esTheme'), risk=g('esRisk'), iia=g('esIia');
+  const dilema=g('esDilema'), qKetua=g('esQK'), qAnggota=g('esQA');
+  if(!title||!dilema){ setAlert('Judul dan narasi skenario wajib diisi.','danger'); return; }
+  const compKetua=g('esCompK').split(',').map(x=>x.trim()).filter(Boolean);
+  const compAnggota=g('esCompA').split(',').map(x=>x.trim()).filter(Boolean);
+  const opts=['A','B','C','D'];
+  const choicesKetua=opts.map((o,i)=>({opt:o,text:g(`ck_text_${i}`),out:g(`ck_out_${i}`),level:gn(`ck_level_${i}`)}));
+  const choicesAnggota=opts.map((o,i)=>({opt:o,text:g(`ca_text_${i}`),out:g(`ca_out_${i}`),level:gn(`ca_level_${i}`)}));
+  const scenarios=DB.get('scenarios')||[];
+  if(!id){
+    scenarios.push({id:'s'+Date.now(),active:true,title,theme,risk,iia,compKetua,compAnggota,dilema,qKetua,qAnggota,choicesKetua,choicesAnggota});
+  } else {
+    const s=scenarios.find(x=>x.id===id);
+    if(s) Object.assign(s,{title,theme,risk,iia,compKetua,compAnggota,dilema,qKetua,qAnggota,choicesKetua,choicesAnggota});
+  }
+  DB.set('scenarios',scenarios);
+  setAlert(`Soal berhasil ${!id?'ditambahkan':'diperbarui'}.`,'success');
+  setView('admin-scenarios');
+}
+
+// Results
+function deleteResult(id){
+  if(!confirm('Hapus data hasil ini?')) return;
+  DB.set('results',(DB.get('results')||[]).filter(r=>r.id!==id));
+  setAlert('Hasil asesmen dihapus.','success'); setView('admin-results');
+}
+function exportResults(){
+  const results=DB.get('results')||[];
+  if(!results.length){ setAlert('Tidak ada data untuk diekspor.','danger'); return; }
+  const header='Nama,Jabatan,Skor,Akurasi,Dampak,Kompetensi,Tanggal\n';
+  const rows=results.map(r=>`"${r.name}","${r.jabatan}",${r.avg},${r.akurasi},${r.dampak},${r.kompetensi},"${new Date(r.completedAt).toLocaleDateString('id-ID')}"`).join('\n');
+  const blob=new Blob([header+rows],{type:'text/csv'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='hasil_asesmen_acsa.csv'; a.click();
+}
+function copyResultText(avg){
+  const G=APP.gameState;
+  if(!G) return;
+  const txt=`HASIL ASESMEN KOMPETENSI AUDIT (ACSA v2.0)\nInternal Audit Division — Asuransi Umum Indonesia\n\nNama: ${APP.session.name}\nJabatan: ${G.jabatan==='ketua'?'Ketua Tim Audit':'Anggota Tim Audit'}\nTanggal: ${new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}\n\nSKOR AKHIR: ${avg}/100\nAkurasi & Bukti: ${Math.round(G.akurasi)}\nDampak Temuan : ${Math.round(G.dampak)}\nKompetensi    : ${Math.round(G.kompetensi)}\n\nGlobal Internal Audit Standards (GIAS) IIA 2024`;
+  navigator.clipboard.writeText(txt).then(()=>alert('Ringkasan berhasil disalin!')).catch(()=>alert('Silakan screenshot halaman ini.'));
+}
+function clearAlert(){ APP.alert=null; }
+
+// ═══════════════════════════════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════════════════════════════
+seedDefaults();
+if(!restoreSession()) APP.view='login';
+else APP.view='dashboard';
+render();
+</script>
+</body>
+</html>
